@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './mainStyle.css';
 
 const HeaderBarComponents = (props) => {
@@ -101,4 +101,115 @@ const ContentBox = (props) => {
     );
 };
 
-export { HeaderBar, HeaderBarBack, ContentBox, }
+const TextContent = (props) => {
+    return (
+        <p style={{
+            color: '#D9D9D9',
+            fontSize: props.size,
+            fontWeight: props.fontWt || "normal",
+            fontFamily: props.fontType,
+            margin: "25px",
+            wordWrap: "break-word",
+            whiteSpace: "pre-wrap",
+        }}>{props.val}</p>
+    );
+}
+
+const TextComponent = () => {
+    return (
+        <div style={{
+            position: 'absolute',
+            top: "42%",
+            right: "150px",
+            width: "500px",
+            textAlign: "right",
+
+        }}>
+            <TextContent val={" \u201CLet's Explore Together\u201D"} size="2em" fontType='Russo One' />
+            <TextContent val={"An individual who loves to explore stuff.\n I am interested in Game Dev and Digital Art."} size="1em" fontType='Roboto Mono' fontWt="bold" />
+        </div>
+    );
+}
+
+const TextCursor = () => {
+    const parameters = {
+        toggleDelay: 150,
+    }
+    const [isVisible, setVisibleStatus] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setVisibleStatus(!isVisible)
+        }, parameters.toggleDelay)
+        return () => clearTimeout(timer)
+
+    });
+
+    return (
+        <p style={{ display: "inline" }}>
+            {isVisible ? "_" : ""}
+        </p>
+    );
+}
+
+const TypeWriterEffect = (props) => {
+    const parameters = {
+        typingSpeed: 200,
+        newWordBreak: 400,
+        endDelay: 1000,
+    };
+    const [text, setText] = useState('');
+    const [stringIterator, setStringIterator] = useState(0);
+    const [wordIterator, setWordIterator] = useState(0);
+    const [delayTime, setDelayTime] = useState(parameters.typingSpeed);
+    const [resetString, setStringReset] = useState(false);
+
+    const handleTyping = () => {
+        if (resetString) {
+            setText('');
+            setStringReset(false);
+        }
+        else {
+
+            // console.log(stringIterator, wordIterator, props.wordList[wordIterator].length);
+            setText(text + props.wordList[wordIterator][stringIterator]);
+            setStringIterator(stringIterator + 1);
+
+            if (stringIterator === props.wordList[wordIterator].length - 1) {
+
+                setStringIterator(0);
+                setWordIterator(wordIterator + 1);
+                setDelayTime(parameters.newWordBreak);
+                if (wordIterator === props.wordList.length - 1) {
+                    setWordIterator(0);
+                    setDelayTime(parameters.endDelay);
+                    setStringReset(true);
+                }
+
+            }
+            else
+                setDelayTime(parameters.typingSpeed);
+        }
+    }
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            handleTyping()
+        }, delayTime)
+        return () => clearTimeout(timer)
+    });
+
+
+    return (
+        <div>
+            <p style={{ display: "inline" }}>{props.headerMessage}</p> <p style={{ display: "inline" }}>{text}</p> <TextCursor />
+        </div>
+    );
+}
+
+const ExploringText = (props) => {
+    return (
+        <TypeWriterEffect headerMessage='Currently Exploring :' wordList={["Vulkan, ", "Behaviour Tree"]} />
+    );
+}
+export { HeaderBar, HeaderBarBack, ContentBox, TextComponent, ExploringText }
