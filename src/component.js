@@ -202,7 +202,7 @@ const TypeWriterEffect = (props) => {
 
     return (
         <div>
-            <p style={{ display: "inline" }}>{props.headerMessage}</p> <p style={{ display: "inline" }}>{text}</p> <TextCursor />
+            <p style={{ display: "inline" }}>{props.headerMessage}</p> <p style={{ display: "inline" }}>{text}</p><TextCursor />
         </div>
     );
 }
