@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './mainStyle.css';
+import './mainStyle.css'
+import avatar from './Avy 1(Enlarged).jpeg'
 
 const HeaderBarComponents = (props) => {
     const hoverColor = "#0E1621";
@@ -90,12 +91,26 @@ const ContentBox = (props) => {
             position: 'absolute',
             bottom: "0px",
             right: "0px",
-            fill: props.fillColor,
+            // fill: props.fillColor,
+            fill: props.texturedFill ? "url(#gradient)" : props.fillColor,
             opacity: props.opacity,
         }}
             height={props.height}
             width={props.width}
         >
+            <defs>
+                <linearGradient id="gradient" x1="6%" y1="4%" x2="2%" y2="8%" spreadMethod="repeat">
+                    <stop offset="0%" stopColor={props.fillColor} />
+                    <stop offset="10%" stopColor={props.fillColor} />
+                    <stop offset="15%" stopColor="black" />
+                    <stop offset="20%" stopColor="black" />
+                    <stop offset="50%" stopColor={props.fillColor} />
+                    <stop offset="60%" stopColor={props.fillColor} />
+                    <stop offset="65%" stopColor="black" />
+                    <stop offset="70%" stopColor="black" />
+                    <stop offset="100%" stopColor={props.fillColor} />
+                </linearGradient>
+            </defs>
             <path d={"M" + props.offset + " 0 L" + props.width + " 0 L" + props.width + " " + props.height + " L0 " + props.height + "Z"} />
         </svg>
     );
@@ -118,15 +133,16 @@ const TextContent = (props) => {
 const TextComponent = () => {
     return (
         <div style={{
-            position: 'absolute',
-            top: "42%",
-            right: "150px",
+            // position: 'absolute',
+            // top: "42%",
+            // right: "150px",
             width: "500px",
             textAlign: "right",
 
         }}>
             <TextContent val={" \u201CLet's Explore Together\u201D"} size="2em" fontType='Russo One' />
             <TextContent val={"An individual who loves to explore stuff.\n I am interested in Game Dev and Digital Art."} size="1em" fontType='Roboto Mono' fontWt="bold" />
+            <TypeWriterEffect headerMessage='Currently Exploring - ' wordList={["Vulkan", ", ", "Behaviour Tree"]} />
         </div>
     );
 }
@@ -146,8 +162,11 @@ const TextCursor = () => {
     });
 
     return (
-        <p style={{ display: "inline" }}>
-            {isVisible ? "_" : ""}
+        <p style={{
+            display: "inline",
+            opacity: isVisible ? 1 : 0,
+        }}>
+            {"_"}
         </p>
     );
 }
@@ -155,7 +174,7 @@ const TextCursor = () => {
 const TypeWriterEffect = (props) => {
     const parameters = {
         typingSpeed: 200,
-        newWordBreak: 400,
+        newWordBreak: 500,
         endDelay: 1000,
     };
     const [text, setText] = useState('');
@@ -201,15 +220,38 @@ const TypeWriterEffect = (props) => {
 
 
     return (
-        <div>
-            <p style={{ display: "inline" }}>{props.headerMessage}</p> <p style={{ display: "inline" }}>{text}</p><TextCursor />
+        <div style={{
+            width: "80%",
+            margin: "10%",
+            textAlign: "left",
+            wordBreak: "break-word",
+            fontSize: "1.4em",
+            fontFamily: "League Spartan",
+            color: "#1EAC68",
+            textShadow: "0 4px 10px #000000",
+        }}>
+            <p style={{ display: "inline", color: "#9E9F9F" }}>{props.headerMessage}</p> <p style={{ display: "inline" }}>{text}</p><TextCursor />
         </div>
     );
 }
 
-const ExploringText = (props) => {
+const AvatarImage = () => {
+    const size = "100px";
+
     return (
-        <TypeWriterEffect headerMessage='Currently Exploring :' wordList={["Vulkan, ", "Behaviour Tree"]} />
+        <div style={{
+            height: size,
+            width: size,
+            backgroundImage: `url('${avatar}')`,
+            backgroundPosition: 'center',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            borderRadius: "50%",
+            border: "2px solid gray",
+            boxShadow: "0 0 50px",
+            margin: "25px 0",
+        }} />
     );
 }
-export { HeaderBar, HeaderBarBack, ContentBox, TextComponent, ExploringText }
+
+export { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage }
