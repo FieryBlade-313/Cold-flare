@@ -1,4 +1,4 @@
-import { HeaderBarBlock, TextContentBlock, TextAndImageBlock } from './componentBlock'
+import { HeaderBarBlock, TextContentBlock, TextAndImageBlock, BgVideoBlock } from './componentBlock'
 
 function App() {
   return (
@@ -6,6 +6,7 @@ function App() {
       <HeaderBarBlock />
       <TextContentBlock />
       <TextAndImageBlock />
+      <BgVideoBlock />
     </div>
   );
 }

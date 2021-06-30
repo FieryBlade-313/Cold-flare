@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createRef, Component } from 'react';
 import './mainStyle.css'
 import avatar from './Avy 1(Enlarged).jpeg'
+import bgVideo from './testVideo.mp4'
 
 const HeaderBarComponents = (props) => {
     const hoverColor = "#0E1621";
@@ -254,4 +255,49 @@ const AvatarImage = () => {
     );
 }
 
-export { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage }
+const VideoBackground = () => {
+
+    const [frameLimit, setframeLimit] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [loaded, setLoadedState] = useState(false);
+    const vid = createRef();
+    const frameSkip = 10 / 60;
+
+    const scrollPlay = (e) => {
+        const dir = e.deltaY * 0.01;
+        if (loaded) {
+            // console.log(frameLimit, vid.current.duration);
+            const newFrame = Math.max(0, Math.min(frameLimit + frameSkip * dir, vid.current.duration));
+            setframeLimit(newFrame);
+        }
+    }
+
+    useEffect(() => {
+        if (!loaded)
+            setLoadedState(true);
+        if (loaded) {
+            const timer = setTimeout(() => {
+                console.log(frameLimit, currentTime)
+                const dir = frameLimit > currentTime ? 1 : -1;
+                let newCurrentTime = currentTime + dir / 60;
+                switch (dir) {
+                    case -1: newCurrentTime = Math.max(newCurrentTime, frameLimit); break;
+                    case 1: newCurrentTime = Math.min(newCurrentTime, frameLimit); break;
+                }
+                if (vid.current != null) {
+                    vid.current.currentTime = newCurrentTime;
+                    setCurrentTime(newCurrentTime);
+                }
+            }, 1000 / 50);
+            return () => clearTimeout(timer);
+        }
+    })
+
+    return (
+        <video ref={vid} className="abstractVideo" muted onWheel={(e) => scrollPlay(e)}>
+            <source src={bgVideo} type='video/mp4' />
+        </video>
+    );
+}
+
+export { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground }

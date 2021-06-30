@@ -1,4 +1,4 @@
-import { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage } from './component'
+import { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground } from './component'
 
 const TextAndImageBlock = () => {
     return (
@@ -28,14 +28,21 @@ const HeaderBarBlock = () => {
 const TextContentBlock = () => {
     return (
         <div>
-            <ContentBox width={510} height={470} offset={100} fillColor="#171717" opacity="0.85" />
-            <ContentBox width={720} height={400} offset={80} fillColor="#171717" opacity="0.75" />
+            <ContentBox width={510} height={470} offset={100} fillColor="#171717" opacity="0.4" />
+            <ContentBox width={720} height={400} offset={80} fillColor="#333333" opacity="0.3" />
         </div>
+    );
+}
+
+const BgVideoBlock = () => {
+    return (
+        <VideoBackground />
     );
 }
 
 export {
     TextAndImageBlock,
     HeaderBarBlock,
-    TextContentBlock
+    TextContentBlock,
+    BgVideoBlock
 };
