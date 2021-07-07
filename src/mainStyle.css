@@ -5,6 +5,34 @@
     transition: fill 0.6s, stroke-width 0.3s;
 }
 
+.buttonDim {
+    height: 50px;
+    width: 180px;
+    margin: 0px 10px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.contact {
+    background-color: #D9D9D9;
+    color: black;
+}
+
+.resume {
+    background-color: transparent;
+    color: #D9D9D9;
+    box-shadow: 0 0 0 3px #D9D9D9 inset;
+    border-radius: 5px;
+}
+
+.buttonHolder {
+    display: flex;
+    position: absolute;
+    right: 25px;
+    bottom: 40px;
+    font-weight: bold;
+}
+
 .abstractVideo {
     object-fit: cover;
     width: 100vw;
@@ -62,15 +90,15 @@
 
 @media screen and (max-width: 450px) {
     .textTagLine {
-        font-size: 1.5em !important;
+        font-size: 1.2em !important;
     }
     
     .textIntro {
-        font-size: 0.8em !important;
+        font-size: 0.7em !important;
     }
     
     .textCurrent {
-        font-size: 1.2em !important;
+        font-size: 1em !important;
     }
     
     .avatarSize {
@@ -80,6 +108,10 @@
 
     .textBlock {
         width: 275px;
+    }
+
+    .buttonDim {
+        width: 120px;
     }
 
 }

@@ -1,4 +1,4 @@
-import { HeaderBarBlock, TextContentBlock, TextAndImageBlock, BgVideoBlock } from './componentBlock'
+import { HeaderBarBlock, TextContentBlock, TextAndImageBlock, BgVideoBlock, ButtonBlock } from './componentBlock'
 import useWindowDimensions from './auxilaryFunctions'
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
       <HeaderBarBlock isSmall={isSmall} />
       <TextContentBlock isSmall={isSmall} />
       <TextAndImageBlock isSmall={isSmall} />
+      <ButtonBlock />
       <BgVideoBlock />
     </div>
   );

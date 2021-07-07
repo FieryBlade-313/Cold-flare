@@ -274,9 +274,7 @@ const VideoBackground = () => {
     }
 
     useEffect(() => {
-        if (!loaded)
-            setLoadedState(true);
-        else {
+        if (loaded) {
             const timer = setTimeout(() => {
 
                 const dir = frameLimit > currentTime ? 1 : -1;
@@ -287,7 +285,6 @@ const VideoBackground = () => {
                     default: ;
                 }
                 if (vid.current != null) {
-                    console.log(currentTime, frameLimit, newCurrentTime);
                     vid.current.currentTime = newCurrentTime;
                     setCurrentTime(newCurrentTime);
                 }
@@ -298,10 +295,22 @@ const VideoBackground = () => {
     }, [loaded, frameLimit, currentTime, vid])
 
     return (
-        <video ref={vid} className="abstractVideo" onLoadedMetadata={() => { setframeLimit(vid.current.duration) }} muted onWheel={(e) => scrollPlay(e)}>
+        <video ref={vid} className="abstractVideo" onLoadedMetadata={() => { setLoadedState(true); setframeLimit(vid.current.duration); }} muted onWheel={(e) => scrollPlay(e)}>
             <source src={bgVideo} type='video/mp4' />
         </video>
     );
 }
 
-export { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground }
+const ContactButton = () => {
+    return (
+        <div className='buttonDim contact' >Contact</div>
+    );
+}
+
+const ResumeButton = () => {
+    return (
+        <div className='buttonDim resume' >Resume</div>
+    );
+}
+
+export { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground, ContactButton, ResumeButton }

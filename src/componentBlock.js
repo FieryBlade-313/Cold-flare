@@ -1,4 +1,4 @@
-import { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground } from './component'
+import { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground, ContactButton, ResumeButton } from './component'
 import useWindowDimensions from './auxilaryFunctions'
 
 const TextAndImageBlock = (props) => {
@@ -71,9 +71,19 @@ const BgVideoBlock = () => {
     );
 }
 
+const ButtonBlock = () => {
+    return (
+        <div className='buttonHolder'>
+            <ResumeButton />
+            <ContactButton />
+        </div>
+    );
+}
+
 export {
     TextAndImageBlock,
     HeaderBarBlock,
     TextContentBlock,
-    BgVideoBlock
+    BgVideoBlock,
+    ButtonBlock,
 };
