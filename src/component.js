@@ -254,24 +254,31 @@ const VideoBackground = () => {
     const [frameLimit, setframeLimit] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const [loaded, setLoadedState] = useState(false);
+    const [isScrollControlled, setScrollControl] = useState(false);
     const vid = createRef();
     const frameSkip = 10 / 60;
 
     const scrollPlay = (e) => {
-        const dir = e.deltaY * 0.01;
-        if (loaded) {
-            // console.log(frameLimit, vid.current.duration);
-            const newFrame = Math.max(0, Math.min(frameLimit + frameSkip * dir, vid.current.duration));
-            setframeLimit(newFrame);
+        if (!isScrollControlled) {
+            setScrollControl(true);
+            setframeLimit(Math.max(0, Math.min(currentTime + frameSkip, vid.current.duration)));
+        }
+        else {
+
+            const dir = e.deltaY * 0.01;
+            if (loaded) {
+                const newFrame = Math.max(0, Math.min(frameLimit + frameSkip * dir, vid.current.duration));
+                setframeLimit(newFrame);
+            }
         }
     }
 
     useEffect(() => {
         if (!loaded)
             setLoadedState(true);
-        if (loaded) {
+        else {
             const timer = setTimeout(() => {
-                console.log(frameLimit, currentTime)
+
                 const dir = frameLimit > currentTime ? 1 : -1;
                 let newCurrentTime = currentTime + dir / 60;
                 switch (dir) {
@@ -280,16 +287,18 @@ const VideoBackground = () => {
                     default: ;
                 }
                 if (vid.current != null) {
+                    console.log(currentTime, frameLimit, newCurrentTime);
                     vid.current.currentTime = newCurrentTime;
                     setCurrentTime(newCurrentTime);
                 }
             }, 1000 / 50);
+
             return () => clearTimeout(timer);
         }
     }, [loaded, frameLimit, currentTime, vid])
 
     return (
-        <video ref={vid} className="abstractVideo" muted onWheel={(e) => scrollPlay(e)}>
+        <video ref={vid} className="abstractVideo" onLoadedMetadata={() => { setframeLimit(vid.current.duration) }} muted onWheel={(e) => scrollPlay(e)}>
             <source src={bgVideo} type='video/mp4' />
         </video>
     );
