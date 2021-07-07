@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createRef, Component } from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import './mainStyle.css'
 import avatar from './Avy 1(Enlarged).jpeg'
 import bgVideo from './testVideo.mp4'
@@ -92,6 +92,7 @@ const ContentBox = (props) => {
             position: 'absolute',
             bottom: "0px",
             right: "0px",
+            pointerEvents: "none",
             // fill: props.fillColor,
             fill: props.texturedFill ? "url(#gradient)" : props.fillColor,
             opacity: props.opacity,
@@ -119,7 +120,7 @@ const ContentBox = (props) => {
 
 const TextContent = (props) => {
     return (
-        <p style={{
+        <p className={props.styleName} style={{
             color: '#D9D9D9',
             fontSize: props.size,
             fontWeight: props.fontWt || "normal",
@@ -133,16 +134,12 @@ const TextContent = (props) => {
 
 const TextComponent = () => {
     return (
-        <div style={{
-            // position: 'absolute',
-            // top: "42%",
-            // right: "150px",
-            width: "500px",
+        <div className="textBlock" style={{
             textAlign: "right",
 
         }}>
-            <TextContent val={" \u201CLet's Explore Together\u201D"} size="2em" fontType='Russo One' />
-            <TextContent val={"An individual who loves to explore stuff.\n I am interested in Game Dev and Digital Art."} size="1em" fontType='Roboto Mono' fontWt="bold" />
+            <TextContent styleName="textTagLine" val={" \u201CLet's Explore Together\u201D"} fontType='Russo One' />
+            <TextContent styleName="textIntro" val={"An individual who loves to explore stuff.\n I am interested in Game Dev and Digital Art."} fontType='Roboto Mono' fontWt="bold" />
             <TypeWriterEffect headerMessage='Currently Exploring - ' wordList={["Vulkan", ", ", "Behaviour Tree"]} />
         </div>
     );
@@ -191,7 +188,6 @@ const TypeWriterEffect = (props) => {
         }
         else {
 
-            // console.log(stringIterator, wordIterator, props.wordList[wordIterator].length);
             setText(text + props.wordList[wordIterator][stringIterator]);
             setStringIterator(stringIterator + 1);
 
@@ -226,23 +222,21 @@ const TypeWriterEffect = (props) => {
             margin: "10%",
             textAlign: "left",
             wordBreak: "break-word",
-            fontSize: "1.4em",
+            fontSize: (props.isSmall ? "1.2em" : "1.4em"),
             fontFamily: "League Spartan",
             color: "#1EAC68",
             textShadow: "0 4px 10px #000000",
-        }}>
+        }} className="textCurrent">
             <p style={{ display: "inline", color: "#9E9F9F" }}>{props.headerMessage}</p> <p style={{ display: "inline" }}>{text}</p><TextCursor />
         </div>
     );
 }
 
-const AvatarImage = () => {
-    const size = "100px";
+const AvatarImage = (props) => {
+    const size = (props.isSmall ? "75px" : "100px");
 
     return (
         <div style={{
-            height: size,
-            width: size,
             backgroundImage: `url('${avatar}')`,
             backgroundPosition: 'center',
             backgroundSize: 'contain',
@@ -251,7 +245,7 @@ const AvatarImage = () => {
             border: "2px solid gray",
             boxShadow: "0 0 50px",
             margin: "25px 0",
-        }} />
+        }} className="avatarSize" />
     );
 }
 
@@ -283,6 +277,7 @@ const VideoBackground = () => {
                 switch (dir) {
                     case -1: newCurrentTime = Math.max(newCurrentTime, frameLimit); break;
                     case 1: newCurrentTime = Math.min(newCurrentTime, frameLimit); break;
+                    default: ;
                 }
                 if (vid.current != null) {
                     vid.current.currentTime = newCurrentTime;
@@ -291,7 +286,7 @@ const VideoBackground = () => {
             }, 1000 / 50);
             return () => clearTimeout(timer);
         }
-    })
+    }, [loaded, frameLimit, currentTime, vid])
 
     return (
         <video ref={vid} className="abstractVideo" muted onWheel={(e) => scrollPlay(e)}>
