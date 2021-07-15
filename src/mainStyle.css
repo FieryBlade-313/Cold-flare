@@ -33,6 +33,38 @@
     font-weight: bold;
 }
 
+.categoryButton {
+    padding: 15px 30px;
+    margin: 15px;
+    border: 1px solid #656565;
+    display: block;
+    font-family: Consolas;
+    transition: all 0.1s;
+    overflow: hidden;
+}
+
+.categoryButton::after {
+    content: " ";
+    position: relative;
+    top: 15px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid rgb(0, 0, 0);
+    border-left: 10px solid transparent;
+    transition: all 0.2s;
+}
+
+.categoryButton:hover {
+    border-color: transparent;
+    background-color: rgb(233, 230, 230);
+    color: rgb(15, 85, 62);
+}
+
+.categoryButton:hover::after {
+    top: 5px;
+}
+
 .abstractVideo {
     object-fit: cover;
     width: 100vw;
@@ -64,6 +96,14 @@
     width: 500px;
 }
 
+.wavepath {
+    display: initial;
+}
+
+.wavepathSml {
+    display: none;
+}
+
 @media screen and (max-width: 700px) {
     .textTagLine {
         font-size: 1.8em !important;
@@ -84,6 +124,14 @@
 
     .textBlock {
         width: 350px;
+    }
+
+    .wavepath {
+        display: none;
+    }
+
+    .wavepathSml {
+        display: initial;
     }
 
 }

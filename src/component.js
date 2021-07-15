@@ -233,7 +233,6 @@ const TypeWriterEffect = (props) => {
 }
 
 const AvatarImage = (props) => {
-    const size = (props.isSmall ? "75px" : "100px");
 
     return (
         <div style={{
@@ -313,4 +312,67 @@ const ResumeButton = () => {
     );
 }
 
-export { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground, ContactButton, ResumeButton }
+const WaveSVG = (props) => {
+    const offset = 20;
+    return (
+        <div>
+            <svg className="wavepath" style={{
+                fill: props.color2,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                zIndex: '-2',
+                pointerEvents: 'none',
+            }} height={2 * props.height1} width={props.width}>
+                <path d={`M 0,${props.height1 + offset} c ${props.width * 0.3},${props.height1} ${props.width * 0.7},${-(props.height1 + offset) * 0.6} ${props.width},${props.height2 - props.height1 - offset} l 0,${-props.height2} l ${-props.width},0`} />
+            </svg>
+            <svg className="wavepath" style={{
+                fill: props.color1,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                zIndex: '-2',
+                pointerEvents: 'none',
+            }} height={2 * props.height1} width={props.width}>
+                <path d={`m 0,${props.height1} c ${props.width * 0.3},${props.height1} ${props.width * 0.7},${-props.height1 * 0.6} ${props.width},${props.height2 - props.height1} l 0,${-props.height2} l ${-props.width},0`} />
+            </svg>
+            <div className="wavepath" style={{
+                position: 'absolute',
+                top: '0',
+                left: '0',
+                padding: '75px',
+                fontFamily: 'League Spartan',
+                color: '#E9E9E9',
+                fontSize: '2em'
+            }}>Projects</div>
+        </div>
+    );
+
+}
+
+const WaveSVGSml = (props) => {
+    return (
+        <div className="wavepathSml"
+            style={{
+                position: 'absolute',
+                top: '88px',
+                padding: '25px 0',
+                width: '100%',
+                backgroundColor: props.color1,
+                textAlign: 'center',
+                lineHeight: '80px',
+                fontFamily: 'League Spartan',
+                color: '#E9E9E9',
+                fontSize: '2em',
+                borderBottom: '10px solid ' + props.color2,
+            }}>Projects</div>
+    );
+}
+
+const CategoryButton = (props) => {
+    return (
+        <span className="categoryButton">{props.categoryName}</span>
+    );
+}
+
+export { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground, ContactButton, ResumeButton, WaveSVG, WaveSVGSml, CategoryButton }
