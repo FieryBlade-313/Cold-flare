@@ -1,5 +1,5 @@
-import { HeaderBarBlock, TextContentBlock, TextAndImageBlock, BgVideoBlock, ButtonBlock, WaveSVGBlock } from './componentBlock'
-import useWindowDimensions from './auxilaryFunctions'
+import { HeaderBarBlock, TextContentBlock, TextAndImageBlock, BgVideoBlock, ButtonBlock, WaveSVGBlock, CategoryBlock } from './componentBlock'
+import { useWindowDimensions } from './auxilaryFunctions'
 import { CategoryButton } from './component'
 
 function App() {
@@ -17,28 +17,7 @@ function App() {
       {/* <ButtonBlock /> */}
       {/* <BgVideoBlock /> */}
       <WaveSVGBlock width={width} />
-      <div style={{
-        position: 'relative',
-        top: '300px',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-      }}>
-        < CategoryButton categoryName="Game Dev" />
-        < CategoryButton categoryName="Gamdadadade Dev" />
-        < CategoryButton categoryName="Game" />
-        < CategoryButton categoryName="Game Dev" />
-        < CategoryButton categoryName="Game Dev" />
-        < CategoryButton categoryName="Game Dev" />
-        < CategoryButton categoryName="Game Dev" />
-        < CategoryButton categoryName="Game Dev" />
-        < CategoryButton categoryName="Game Dev" />
-        < CategoryButton categoryName="Game Dev" />
-        < CategoryButton categoryName="Game Dev" />
-        < CategoryButton categoryName="Game Dev" />
-        < CategoryButton categoryName="Game Dev" />
-      </div>
+      < CategoryBlock />
     </div>
   );
 }

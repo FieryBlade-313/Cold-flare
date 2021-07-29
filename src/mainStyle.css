@@ -57,8 +57,8 @@
 
 .categoryButton:hover {
     border-color: transparent;
-    background-color: rgb(233, 230, 230);
-    color: rgb(15, 85, 62);
+    background-color: rgb(196, 196, 196);
+    color: rgb(30, 73, 34);
 }
 
 .categoryButton:hover::after {

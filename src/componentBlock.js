@@ -1,5 +1,5 @@
-import { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground, ContactButton, ResumeButton, WaveSVG, WaveSVGSml } from './component'
-import useWindowDimensions from './auxilaryFunctions'
+import { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground, ContactButton, ResumeButton, WaveSVG, WaveSVGSml, CategoryButton } from './component'
+import { getCategories } from './auxilaryFunctions'
 
 const TextAndImageBlock = (props) => {
 
@@ -97,6 +97,23 @@ const ButtonBlock = () => {
     );
 }
 
+const CategoryBlock = () => {
+
+    const category = getCategories().map((category) => <CategoryButton categoryName={category} />)
+    return (
+        <div style={{
+            position: 'relative',
+            top: '300px',
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+        }}>
+            {category}
+        </div>
+    );
+}
+
 export {
     TextAndImageBlock,
     HeaderBarBlock,
@@ -104,4 +121,5 @@ export {
     BgVideoBlock,
     ButtonBlock,
     WaveSVGBlock,
+    CategoryBlock,
 };
