@@ -12,6 +12,20 @@
     text-align: center;
     line-height: 50px;
 }
+.projectImageParent {
+    margin: 35px;
+    height: auto;
+    width: 700px;
+    align-self: center;
+}
+
+.projectImage {
+    height: auto;
+    width: 100%;
+    margin: 15px 0px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px;
+}
 
 .contact {
     background-color: #D9D9D9;
@@ -34,7 +48,7 @@
 }
 
 .categoryButton {
-    padding: 15px 30px;
+    padding: 15px 20px 15px 30px;
     margin: 15px;
     border: 1px solid #656565;
     display: block;
@@ -47,7 +61,7 @@
     content: " ";
     position: relative;
     top: 15px;
-    left: 30px;
+    left: 20px;
     width: 0;
     height: 0;
     border-bottom: 10px solid rgb(0, 0, 0);
@@ -132,6 +146,16 @@
 
     .wavepathSml {
         display: initial;
+    }
+
+    .projectImageParent {
+        margin: 10px;
+        width: 100%;
+    }
+    
+    .projectImage {
+        border-radius: 0px;
+        box-shadow: 0 5px 15px;
     }
 
 }

@@ -99,7 +99,7 @@ const ButtonBlock = () => {
 
 const CategoryBlock = () => {
 
-    const category = getCategories().map((category) => <CategoryButton categoryName={category} />)
+    const category = getCategories().map((category, i) => <CategoryButton categoryName={category} key={i} />)
     return (
         <div style={{
             position: 'relative',

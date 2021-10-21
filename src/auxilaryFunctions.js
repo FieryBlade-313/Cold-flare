@@ -1,4 +1,26 @@
 import { useState, useEffect } from 'react';
+import projectData from './data.json';
+import ark_1 from './test_img.jpg'
+import ark_2 from './Pirate_scene_setup.png'
+
+const categorySet = new Set();
+
+const GenerateCategories = () => {
+    projectData['data'].forEach(data => {
+        data.category.forEach(category => {
+            categorySet.add(category);
+        })
+    });
+}
+
+const ImageMap = {
+    'ark_1': ark_1,
+    'ark_2': ark_2,
+}
+
+const GetImageComponent = (image_key) => {
+    return image_key.map((key) => ImageMap[key]);
+}
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -24,11 +46,17 @@ function useWindowDimensions() {
 }
 
 function getCategories() {
-    const category = ["Game Developement", "Digital Art", "Logo Designing", "Shaders", "Web Development", "App Developement", "Game Art", "3D Modelling", "Sculpting", "On Going"];
-    return category;
+    return [...categorySet];
+}
+
+function getProjects() {
+    return projectData;
 }
 
 export {
     useWindowDimensions,
     getCategories,
+    getProjects,
+    GenerateCategories,
+    GetImageComponent,
 }

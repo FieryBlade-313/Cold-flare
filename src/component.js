@@ -1,7 +1,10 @@
 import React, { useState, useEffect, createRef } from 'react';
-import './mainStyle.css'
-import avatar from './Avy 1(Enlarged).jpeg'
-import bgVideo from './testVideo.mp4'
+import './mainStyle.css';
+import avatar from './Avy 1(Enlarged).jpeg';
+import bgVideo from './testVideo.mp4';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const HeaderBarComponents = (props) => {
     const hoverColor = "#0E1621";
@@ -375,4 +378,94 @@ const CategoryButton = (props) => {
     );
 }
 
-export { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground, ContactButton, ResumeButton, WaveSVG, WaveSVGSml, CategoryButton }
+const ProjectImageBlock = (props) => {
+    const settings = {
+        infinite: true,
+        dots: true,
+        lazyLoad: true,
+        fade: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        cssEase: "ease-in",
+        pauseOnHover: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+    };
+    const imageUnits = props.projectImage.map((image, i) => <img className='projectImage' src={image} key={i} ></img>);
+    return (
+        <Slider {...settings}>
+            {imageUnits}
+        </Slider>
+    );
+}
+
+const ProjectUnit = (props) => {
+
+    const imageAmount = props.projectImage.length;
+    const categoryBlock = props.category.map((category) => <ProjectCategory text={category} />)
+
+    return (
+        <div style={{
+            display: "flex",
+            flexDirection: 'column',
+            whiteSpace: "pre-wrap",
+        }}>
+            <span style={{
+                fontFamily: `'Montserrat', sans-serif`,
+                fontSize: '2em',
+                fontWeight: 'bold',
+                margin: '15px 50px',
+            }}>{props.projectTitle}</span>
+            <span style={{
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                margin: '5px 50px',
+            }}>
+                {categoryBlock}
+            </span>
+            <span style={{
+                fontFamily: `'Roboto', sans-serif`,
+                fontSize: '1em',
+                fontWeight: 'regular',
+                margin: '15px 50px',
+            }}>{props.projectContent}</span>
+            <span className='projectImageParent'>
+                <ProjectImageBlock projectImage={props.projectImage} />
+            </span>
+        </div >
+    );
+}
+
+const ProjectCategory = (props) => {
+    return (
+        <div style={{
+            padding: '5px 10px',
+            borderRadius: '5px',
+            backgroundColor: '#73AA50',
+            color: '#fff',
+            textAlign: 'center',
+            minWidth: '30px',
+            margin: '5px',
+        }}>
+            {props.text}
+        </div>
+    );
+}
+
+export {
+    HeaderBar,
+    HeaderBarBack,
+    ContentBox,
+    TextComponent,
+    AvatarImage,
+    VideoBackground,
+    ContactButton,
+    ResumeButton,
+    WaveSVG,
+    WaveSVGSml,
+    CategoryButton,
+    ProjectUnit,
+}
