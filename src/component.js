@@ -5,6 +5,7 @@ import bgVideo from './testVideo.mp4';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useHistory } from "react-router-dom";
 
 const HeaderBarComponents = (props) => {
     const hoverColor = "#0E1621";
@@ -41,11 +42,15 @@ const HeaderBarComponents = (props) => {
 
     }
 
+    let history = useHistory();
+    const navigater = (path) => history.push(path);
+
     return (
         <div>
             <svg className="headerButton"
                 onMouseEnter={() => { setColor(hoverColor); setWidth(maxWidth) }}
                 onMouseLeave={() => { setColor(defColor); setWidth(0) }}
+                onClick={() => props.pushPath && navigater(props.pushPath)}
                 style={buttonStyle}
                 height={props.height + (props.index) * props.width * Math.tan(props.angle * Math.PI / 180)} width={props.width}>
                 <path
@@ -58,11 +63,24 @@ const HeaderBarComponents = (props) => {
 };
 
 const HeaderBar = (props) => {
-    const titleArray = ["About Me", "My Projects", "Home"];
+
+    const titleArray = [
+        {
+            name: "About Me",
+        },
+        {
+            name: "My Projects",
+            pushPath: '/project',
+        },
+        {
+            name: "Home",
+            pushPath: '/',
+        }
+    ];
     return (
         <div>
-            {[...Array(3)].map((e, i) => {
-                return <HeaderBarComponents key={i} height={props.height} width={props.width} angle={props.angle} offset={props.offset} index={i} title={titleArray[i]} />
+            {titleArray.map((titleData, index) => {
+                return <HeaderBarComponents key={index} height={props.height} width={props.width} angle={props.angle} offset={props.offset} index={index} title={titleData.name} pushPath={titleData.pushPath} />
             })}
         </div>
     );
@@ -372,9 +390,16 @@ const WaveSVGSml = (props) => {
     );
 }
 
-const CategoryButton = (props) => {
+const CategoryButton = ({ categoryName }) => {
+
+    let history = useHistory();
+
     return (
-        <span className="categoryButton">{props.categoryName}</span>
+        <span
+            className="categoryButton"
+            onClick={() => history.push(`/project/${categoryName}`)}>
+            {categoryName}
+        </span>
     );
 }
 
@@ -403,8 +428,7 @@ const ProjectImageBlock = (props) => {
 
 const ProjectUnit = (props) => {
 
-    const imageAmount = props.projectImage.length;
-    const categoryBlock = props.category.map((category) => <ProjectCategory text={category} />)
+    const categoryBlock = props.category.map((category, index) => <ProjectCategory key={index} text={category} />)
 
     return (
         <div style={{
@@ -413,7 +437,7 @@ const ProjectUnit = (props) => {
             whiteSpace: "pre-wrap",
         }}>
             <span style={{
-                fontFamily: `'Montserrat', sans-serif`,
+                fontFamily: `'League Spartan', sans-serif`,
                 fontSize: '2em',
                 fontWeight: 'bold',
                 margin: '15px 50px',
@@ -427,7 +451,7 @@ const ProjectUnit = (props) => {
                 {categoryBlock}
             </span>
             <span style={{
-                fontFamily: `'Roboto', sans-serif`,
+                fontFamily: `'Montserrat', sans-serif`,
                 fontSize: '1em',
                 fontWeight: 'regular',
                 margin: '15px 50px',
@@ -440,6 +464,7 @@ const ProjectUnit = (props) => {
 }
 
 const ProjectCategory = (props) => {
+
     return (
         <div style={{
             padding: '5px 10px',
@@ -448,7 +473,7 @@ const ProjectCategory = (props) => {
             color: '#fff',
             textAlign: 'center',
             minWidth: '30px',
-            margin: '5px',
+            margin: '0 8px 0 0',
         }}>
             {props.text}
         </div>

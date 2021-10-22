@@ -1,5 +1,18 @@
-import { HeaderBar, HeaderBarBack, ContentBox, TextComponent, AvatarImage, VideoBackground, ContactButton, ResumeButton, WaveSVG, WaveSVGSml, CategoryButton } from './component'
-import { getCategories } from './auxilaryFunctions'
+import {
+    HeaderBar,
+    HeaderBarBack,
+    ContentBox,
+    TextComponent,
+    AvatarImage,
+    VideoBackground,
+    ContactButton,
+    ResumeButton,
+    WaveSVG,
+    WaveSVGSml,
+    CategoryButton,
+    ProjectUnit,
+} from './component'
+import { GetCategories, GetProjects, GetImageComponent } from './auxilaryFunctions'
 
 const TextAndImageBlock = (props) => {
 
@@ -99,7 +112,7 @@ const ButtonBlock = () => {
 
 const CategoryBlock = () => {
 
-    const category = getCategories().map((category, i) => <CategoryButton categoryName={category} key={i} />)
+    const category = GetCategories().map((category, i) => <CategoryButton categoryName={category} key={i} />)
     return (
         <div style={{
             position: 'relative',
@@ -114,6 +127,19 @@ const CategoryBlock = () => {
     );
 }
 
+const ProjectCategoryBlock = ({ category }) => {
+
+    const projects = GetProjects(category).map((project, index) => {
+        return <ProjectUnit key={index} projectTitle={project['title']} projectContent={project['content']} category={project['category']} projectImage={GetImageComponent(project['images'])} />
+    });
+
+    return (
+        <div>
+            {projects}
+        </div>
+    );
+}
+
 export {
     TextAndImageBlock,
     HeaderBarBlock,
@@ -122,4 +148,5 @@ export {
     ButtonBlock,
     WaveSVGBlock,
     CategoryBlock,
+    ProjectCategoryBlock,
 };

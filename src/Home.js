@@ -17,3 +17,5 @@ const Home = ({ isSmall, width, height }) => {
         </div>
     );
 }
+
+export default Home;

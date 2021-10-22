@@ -22,7 +22,7 @@ const GetImageComponent = (image_key) => {
     return image_key.map((key) => ImageMap[key]);
 }
 
-function getWindowDimensions() {
+function GetWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
         width,
@@ -30,12 +30,12 @@ function getWindowDimensions() {
     };
 }
 
-function useWindowDimensions() {
-    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+function UseWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(GetWindowDimensions());
 
     useEffect(() => {
         function handleResize() {
-            setWindowDimensions(getWindowDimensions());
+            setWindowDimensions(GetWindowDimensions());
         }
 
         window.addEventListener('resize', handleResize);
@@ -45,18 +45,22 @@ function useWindowDimensions() {
     return windowDimensions;
 }
 
-function getCategories() {
+function GetCategories() {
     return [...categorySet];
 }
 
-function getProjects() {
-    return projectData;
+function GetProjects(dataFilter) {
+    let filterProjects = dataFilter ? projectData['data'].filter((project) => {
+        return project['category'].includes(dataFilter);
+    }) : projectData['data'];
+
+    return filterProjects;
 }
 
 export {
-    useWindowDimensions,
-    getCategories,
-    getProjects,
+    UseWindowDimensions,
+    GetCategories,
+    GetProjects,
     GenerateCategories,
     GetImageComponent,
 }

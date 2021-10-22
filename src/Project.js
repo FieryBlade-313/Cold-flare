@@ -4,7 +4,7 @@ import {
     CategoryBlock,
 } from './componentBlock'
 
-const Home = ({ isSmall, width, height }) => {
+const ProjectMain = ({ isSmall, width, height }) => {
     return (
         <div>
             <HeaderBarBlock isSmall={isSmall} width={width} height={height} />
@@ -13,3 +13,5 @@ const Home = ({ isSmall, width, height }) => {
         </div>
     );
 }
+
+export default ProjectMain;

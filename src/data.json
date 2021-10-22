@@ -13,15 +13,14 @@
             ]
         },
         {
-            "title": "Arkenzha",
+            "title": "Numidium",
             "category": [
-                "3D Modelling",
-                "Sculpting"
+                "2D",
+                "Digital Art"
             ],
-            "content": "Arkenzha Content",
+            "content": "Numidium Content",
             "images": [
-                "ark_1",
-                "ark_2"
+                "ark_1"
             ]
         }
     ]
