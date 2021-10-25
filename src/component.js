@@ -1,11 +1,17 @@
 import React, { useState, useEffect, createRef } from 'react';
 import './mainStyle.css';
 import avatar from './Avy 1(Enlarged).jpeg';
-import bgVideo from './testVideo.mp4';
+import bgVideo from './Media/Video/testVideo.mp4';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { GetRandomGameMessage } from './auxilaryFunctions';
+
+
+const NavigatorChecker = (path, curr) => {
+    return path !== curr;
+}
 
 const HeaderBarComponents = (props) => {
     const hoverColor = "#0E1621";
@@ -43,14 +49,15 @@ const HeaderBarComponents = (props) => {
     }
 
     let history = useHistory();
-    const navigater = (path) => history.push(path);
+    let location = useLocation();
+
 
     return (
         <div>
             <svg className="headerButton"
                 onMouseEnter={() => { setColor(hoverColor); setWidth(maxWidth) }}
                 onMouseLeave={() => { setColor(defColor); setWidth(0) }}
-                onClick={() => props.pushPath && navigater(props.pushPath)}
+                onClick={() => props.pushPath && NavigatorChecker(props.pushPath, location.pathname) && history.push(props.pushPath)}
                 style={buttonStyle}
                 height={props.height + (props.index) * props.width * Math.tan(props.angle * Math.PI / 180)} width={props.width}>
                 <path
@@ -253,21 +260,44 @@ const TypeWriterEffect = (props) => {
     );
 }
 
+let t;
+
 const AvatarImage = (props) => {
 
+    const [showState, setShowState] = useState(false);
+    const [messageValue, setMessageValue] = useState({ 'game': '', 'formatData': { 'prefix': '', 'suffix': '' } });
+    const duration = 5;
+
     return (
-        <div style={{
-            backgroundImage: `url('${avatar}')`,
-            backgroundPosition: 'center',
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            borderRadius: "50%",
-            border: "2px solid gray",
-            boxShadow: "0 0 50px",
-            margin: "25px 0",
-        }} className="avatarSize" />
+        <div>
+            <div style={{
+                backgroundImage: `url('${avatar}')`,
+                backgroundPosition: 'center',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                borderRadius: "50%",
+                boxShadow: "0 0 50px",
+                margin: "25px 0",
+            }}
+                onClick={() => {
+                    if (showState) {
+                        setShowState(false);
+                        clearTimeout(t);
+                    }
+                    else {
+                        setShowState(true);
+                        setMessageValue(GetRandomGameMessage());
+                        t = setTimeout(() => setShowState(false), duration * 1000);
+                    }
+                }
+                }
+                className="avatarSize" />
+            <MessageBox game={messageValue['game']} formatData={messageValue['formatData']} showState={showState} />
+        </div>
     );
 }
+
+let videoTotalDuration = null;
 
 const VideoBackground = () => {
 
@@ -276,7 +306,8 @@ const VideoBackground = () => {
     const [loaded, setLoadedState] = useState(false);
     const [isScrollControlled, setScrollControl] = useState(false);
     const vid = createRef();
-    const frameSkip = 10 / 60;
+    const frameSkip = 120 / 60;
+    const indicatorWidth = 200;
 
     const scrollPlay = (e) => {
         if (!isScrollControlled) {
@@ -293,6 +324,13 @@ const VideoBackground = () => {
         }
     }
 
+    const GetIndicatorLength = () => {
+        let resLength = 0;
+        if (videoTotalDuration)
+            resLength = indicatorWidth - (videoTotalDuration - currentTime) * indicatorWidth / videoTotalDuration;
+        return resLength;
+    }
+
     useEffect(() => {
         if (loaded) {
             const timer = setTimeout(() => {
@@ -306,6 +344,8 @@ const VideoBackground = () => {
                 }
                 if (vid.current != null) {
                     vid.current.currentTime = newCurrentTime;
+                    if (!videoTotalDuration)
+                        videoTotalDuration = vid.current.duration;
                     setCurrentTime(newCurrentTime);
                 }
             }, 1000 / 50);
@@ -315,9 +355,20 @@ const VideoBackground = () => {
     }, [loaded, frameLimit, currentTime, vid])
 
     return (
-        <video ref={vid} className="abstractVideo" onLoadedMetadata={() => { setLoadedState(true); setframeLimit(vid.current.duration); }} muted onWheel={(e) => scrollPlay(e)}>
-            <source src={bgVideo} type='video/mp4' />
-        </video>
+        <div>
+            <video ref={vid} className="abstractVideo" onLoadedMetadata={() => { setLoadedState(true); setframeLimit(vid.current.duration); }} muted onWheel={(e) => scrollPlay(e)}>
+                <source src={bgVideo} type='video/mp4' />
+            </video>
+            {/* <span className='indicator'>
+                <div style={{
+                    width: indicatorWidth + 'px',
+                }} className='indicatorBack'>
+                    <div style={{
+                        width: GetIndicatorLength() + 'px',
+                    }} className='indicatorMain'></div>
+                </div>
+            </span> */}
+        </div>
     );
 }
 
@@ -393,11 +444,14 @@ const WaveSVGSml = (props) => {
 const CategoryButton = ({ categoryName }) => {
 
     let history = useHistory();
+    let location = useLocation();
+
+    const pushPath = `/project/${categoryName}`;
 
     return (
         <span
             className="categoryButton"
-            onClick={() => history.push(`/project/${categoryName}`)}>
+            onClick={() => NavigatorChecker(pushPath, location.pathname) && history.push(pushPath)}>
             {categoryName}
         </span>
     );
@@ -407,7 +461,7 @@ const ProjectImageBlock = (props) => {
     const settings = {
         infinite: true,
         dots: true,
-        lazyLoad: true,
+        lazyLoad: false,
         fade: true,
         speed: 500,
         autoplay: true,
@@ -417,6 +471,7 @@ const ProjectImageBlock = (props) => {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
+        adaptiveHeight: false,
     };
     const imageUnits = props.projectImage.map((image, i) => <img className='projectImage' src={image} key={i} ></img>);
     return (
@@ -440,7 +495,7 @@ const ProjectUnit = (props) => {
                 fontFamily: `'League Spartan', sans-serif`,
                 fontSize: '2em',
                 fontWeight: 'bold',
-                margin: '15px 50px',
+                margin: '15px 0 15px 50px',
             }}>{props.projectTitle}</span>
             <span style={{
                 display: 'flex',
@@ -469,14 +524,30 @@ const ProjectCategory = (props) => {
         <div style={{
             padding: '5px 10px',
             borderRadius: '5px',
-            backgroundColor: '#73AA50',
+            backgroundColor: '#26745a',
             color: '#fff',
             textAlign: 'center',
             minWidth: '30px',
-            margin: '0 8px 0 0',
+            margin: '0 8px 8px 0',
         }}>
             {props.text}
         </div>
+    );
+}
+
+const MessageBox = ({ game, formatData, showState }) => {
+
+    const prefix = formatData['prefix'].concat(formatData['prefix'] !== '' ? ' ' : '');
+    const suffix = (formatData['suffix'] !== '' ? ' ' : '').concat(formatData['suffix']);
+
+    return (
+        <div style={{
+            position: 'absolute',
+            top: '0px',
+            transform: `translate(0, ${showState ? -70 : -20}%)`,
+            opacity: showState ? 1 : 0,
+            transitionDuration: showState ? '0.4s' : '0.15s',
+        }} className="avatarMessageDecorator">{prefix}<span className="avatarMessageMain">{game}</span>{suffix}</div>
     );
 }
 

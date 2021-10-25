@@ -5,6 +5,24 @@
     transition: fill 0.6s, stroke-width 0.3s;
 }
 
+.indicator {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+}
+
+.indicatorBack {
+    border: 2px solid #00000031;
+    height: 10px;
+    width: 200px;
+}
+
+.indicatorMain {
+    height: 100%;
+    background-color: #1E1E1E;
+    right: 0;
+}
+
 .buttonDim {
     height: 50px;
     width: 180px;
@@ -12,10 +30,17 @@
     text-align: center;
     line-height: 50px;
 }
+
+.WaveMainContent {
+    position: absolute;
+    width: 100%;
+    top: 240px;
+}
+
 .projectImageParent {
     margin: 35px;
     height: auto;
-    width: 700px;
+    width: 400px;
     align-self: center;
 }
 
@@ -104,6 +129,33 @@
 .avatarSize {
     height: 100px;
     width: 100px;
+    border: 4px solid gray;
+    transition: all 0.8s;
+}
+
+.avatarSize:hover {
+    border: 4px solid rgb(0, 112, 75);
+}
+
+.avatarMessageDecorator {
+    position: absolute;
+    padding: 8px 15px;
+    border-radius: 10px 10px 2px;
+    background-color: #C6C6C6;
+    transition-property: all;
+    display: inline-block;
+    width: auto;
+    word-wrap:break-word;
+    max-width: 60vw;
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-size: 0.9em;
+    right: 50px;
+}
+
+.avatarMessageMain {
+    font-weight: bold;
+    color:#921545;
 }
 
 .textBlock {
@@ -136,6 +188,10 @@
         width: 90px;
     }
 
+    .avatarMessageDecorator {
+        right: 40px;
+    }
+
     .textBlock {
         width: 350px;
     }
@@ -146,6 +202,10 @@
 
     .wavepathSml {
         display: initial;
+    }
+
+    .WaveMainContent {
+        top: 300px;
     }
 
     .projectImageParent {
@@ -176,6 +236,10 @@
     .avatarSize {
         height: 75px;
         width: 75px;
+    }
+
+    .avatarMessageDecorator {
+        right: 37px;
     }
 
     .textBlock {

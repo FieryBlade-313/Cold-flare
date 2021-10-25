@@ -2,6 +2,7 @@ import {
     HeaderBarBlock,
     WaveSVGBlock,
     ProjectCategoryBlock,
+    WaveMainContent,
 
 } from './componentBlock'
 
@@ -14,9 +15,9 @@ const ProjectCategory = ({ isSmall, width, height }) => {
     let { category } = useParams();
     return (
         <div>
-            {/* <HeaderBarBlock isSmall={isSmall} width={width} height={height} /> */}
-            {/* <WaveSVGBlock width={width} /> */}
-            <ProjectCategoryBlock category={category} />
+            <HeaderBarBlock isSmall={isSmall} width={width} height={height} />
+            <WaveSVGBlock width={width} />
+            <WaveMainContent child={<ProjectCategoryBlock category={category} />} />
         </div>
     );
 }

@@ -2,6 +2,7 @@ import {
     HeaderBarBlock,
     WaveSVGBlock,
     CategoryBlock,
+    WaveMainContent,
 } from './componentBlock'
 
 const ProjectMain = ({ isSmall, width, height }) => {
@@ -9,7 +10,7 @@ const ProjectMain = ({ isSmall, width, height }) => {
         <div>
             <HeaderBarBlock isSmall={isSmall} width={width} height={height} />
             <WaveSVGBlock width={width} />
-            < CategoryBlock />
+            <WaveMainContent child={< CategoryBlock height={height}/>} />
         </div>
     );
 }

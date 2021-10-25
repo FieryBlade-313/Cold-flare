@@ -1,7 +1,19 @@
 import { useState, useEffect } from 'react';
-import projectData from './data.json';
-import ark_1 from './test_img.jpg'
-import ark_2 from './Pirate_scene_setup.png'
+import projectData from './Data/data.json';
+import gameData from './Data/game.json';
+import messageDecoratorData from './Data/message.json';
+
+//import images
+import FacePortraitWoman from './Media/Images/Face Portrait/Final.jpg';
+import FacePortraitWomanSolo from './Media/Images/Face Portrait/Final_solo.jpg';
+import DailyHealthz from './Media/Images/Logo/Daily Healthz card.png';
+import MelleCard from './Media/Images/Logo/melle_card.png';
+import MelleRender from './Media/Images/Logo/melle_render.jpg';
+import Waneur from './Media/Images/Logo/waneur_logo.png';
+import PirateScene from './Media/Images/Pirate Scene/Pirate Scene setup.png';
+import Pirate2DAnimation from './Media/Images/Pirate Scene/preko_anim.gif';
+import Shipwreck from './Media/Images/Pirate Scene/shipwreck.png';
+import TheWoods from './Media/Images/The woods/man in the woods.png';
 
 const categorySet = new Set();
 
@@ -14,12 +26,32 @@ const GenerateCategories = () => {
 }
 
 const ImageMap = {
-    'ark_1': ark_1,
-    'ark_2': ark_2,
+    'face_portrait': FacePortraitWoman,
+    'face_portrait_solo': FacePortraitWomanSolo,
+    'daily_healthz': DailyHealthz,
+    'melle_card': MelleCard,
+    'melle_render': MelleRender,
+    'waneur': Waneur,
+    'pirate_scene': PirateScene,
+    'pirate_anim': Pirate2DAnimation,
+    'shipwreck': Shipwreck,
+    'the_woods': TheWoods,
 }
 
 const GetImageComponent = (image_key) => {
     return image_key.map((key) => ImageMap[key]);
+}
+
+const GetRandomArrayValue = (arr) => {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+const GetRandomGameMessage = () => {
+    let res = {
+        'game': GetRandomArrayValue(gameData['data']),
+        'formatData': GetRandomArrayValue(messageDecoratorData['data'])
+    };
+    return res;
 }
 
 function GetWindowDimensions() {
@@ -63,4 +95,5 @@ export {
     GetProjects,
     GenerateCategories,
     GetImageComponent,
+    GetRandomGameMessage,
 }

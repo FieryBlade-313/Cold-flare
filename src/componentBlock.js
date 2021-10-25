@@ -110,16 +110,17 @@ const ButtonBlock = () => {
     );
 }
 
-const CategoryBlock = () => {
+const CategoryBlock = ({ height }) => {
 
     const category = GetCategories().map((category, i) => <CategoryButton categoryName={category} key={i} />)
     return (
         <div style={{
             position: 'relative',
-            top: '300px',
+            height: height - 240 + 'px',
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
+            alignContent: 'center',
             flexWrap: 'wrap',
         }}>
             {category}
@@ -140,6 +141,14 @@ const ProjectCategoryBlock = ({ category }) => {
     );
 }
 
+const WaveMainContent = ({ child }) => {
+    return (
+        <div className={'WaveMainContent'}>
+            {child}
+        </div>
+    );
+}
+
 export {
     TextAndImageBlock,
     HeaderBarBlock,
@@ -149,4 +158,5 @@ export {
     WaveSVGBlock,
     CategoryBlock,
     ProjectCategoryBlock,
+    WaveMainContent,
 };
