@@ -14,6 +14,17 @@ import PirateScene from './Media/Images/Pirate Scene/Pirate Scene setup.png';
 import Pirate2DAnimation from './Media/Images/Pirate Scene/preko_anim.gif';
 import Shipwreck from './Media/Images/Pirate Scene/shipwreck.png';
 import TheWoods from './Media/Images/The woods/man in the woods.png';
+import ElfoRoot from './Media/Images/Elfo Sera/root.png';
+import ElfoUse from './Media/Images/Elfo Sera/use.png';
+import PixelArtCharacter1 from './Media/Images/Pixel Art Generator/ex1.png';
+import PixelArtCharacter2 from './Media/Images/Pixel Art Generator/ex2.png';
+import PixelArtCharacter3 from './Media/Images/Pixel Art Generator/ex3.png';
+import PixelArtCharacter4 from './Media/Images/Pixel Art Generator/ex4.png';
+import PixelArtCharacter5 from './Media/Images/Pixel Art Generator/ex5.png';
+import WitcherStatic from './Media/Images/Witcher 3/orig_wallpaper.png';
+import WitcherVideo from './Media/Video/Witcher 3/video.mp4';
+import RocketInjector from './Media/Video/Rocket Injector Visulizer/video.mp4'
+import AgentPong from './Media/Video/Agent Pong/video.mp4'
 
 const categorySet = new Set();
 
@@ -36,10 +47,28 @@ const ImageMap = {
     'pirate_anim': Pirate2DAnimation,
     'shipwreck': Shipwreck,
     'the_woods': TheWoods,
+    'elfo_root': ElfoRoot,
+    'elfo_use': ElfoUse,
+    'pixel_character_1': PixelArtCharacter1,
+    'pixel_character_2': PixelArtCharacter2,
+    'pixel_character_3': PixelArtCharacter3,
+    'pixel_character_4': PixelArtCharacter4,
+    'pixel_character_5': PixelArtCharacter5,
+    'witcher_static': WitcherStatic,
+    'witcher_video': WitcherVideo,
+    'rocket_injector': RocketInjector,
+    'agent_pong': AgentPong,
 }
 
 const GetImageComponent = (image_key) => {
-    return image_key.map((key) => ImageMap[key]);
+    let res = image_key.map((key) => {
+        return {
+            'media': ImageMap[key['media']],
+            'type': key['type']
+        }
+    });
+
+    return res;
 }
 
 const GetRandomArrayValue = (arr) => {

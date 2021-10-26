@@ -23,7 +23,7 @@ const TextAndImageBlock = (props) => {
             display: 'flex',
             justifyContent: 'flex-start',
             position: 'absolute',
-            top: (props.height - 400) + "px",
+            top: (props.height > 500 ? (props.height - 400) : 275) + "px",
             right: '0',
             margin: '0 25px',
         }}>
@@ -89,8 +89,8 @@ const TextContentBlock = (props) => {
 const WaveSVGBlock = (props) => {
     return (
         <div>
-            <WaveSVG height1={150} height2={140} width={props.width} color1="#2E4A4A" color2="#253131" />
-            <WaveSVGSml height={80} color1="#3A5C5C" color2="#253131" />
+            <WaveSVG height1={150} height2={140} width={props.width} color1="#2E4A4A" color2="#253131" title={props.title} />
+            <WaveSVGSml height={80} color1="#3A5C5C" color2="#253131" title={props.title} />
         </div>
     );
 }
@@ -115,8 +115,7 @@ const CategoryBlock = ({ height }) => {
     const category = GetCategories().map((category, i) => <CategoryButton categoryName={category} key={i} />)
     return (
         <div style={{
-            position: 'relative',
-            height: height - 240 + 'px',
+            position: 'absolute',
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
@@ -131,7 +130,7 @@ const CategoryBlock = ({ height }) => {
 const ProjectCategoryBlock = ({ category }) => {
 
     const projects = GetProjects(category).map((project, index) => {
-        return <ProjectUnit key={index} projectTitle={project['title']} projectContent={project['content']} category={project['category']} projectImage={GetImageComponent(project['images'])} />
+        return <ProjectUnit key={index} projectTitle={project['title']} projectContent={project['content']} category={project['category']} projectImage={GetImageComponent(project['media'])} />
     });
 
     return (

@@ -16,7 +16,7 @@ const ProjectCategory = ({ isSmall, width, height }) => {
     return (
         <div>
             <HeaderBarBlock isSmall={isSmall} width={width} height={height} />
-            <WaveSVGBlock width={width} />
+            <WaveSVGBlock width={width} title={"Projects"} />
             <WaveMainContent child={<ProjectCategoryBlock category={category} />} />
         </div>
     );

@@ -6,9 +6,15 @@
                 "Digital Art"
             ],
             "content": "",
-            "images": [
-                "face_portrait",
-                "face_portrait_solo"
+            "media": [
+                {
+                    "media": "face_portrait",
+                    "type": "image"
+                },
+                {
+                    "media": "face_portrait_solo",
+                    "type": "image"
+                }
             ]
         },
         {
@@ -17,8 +23,11 @@
                 "Digital Art"
             ],
             "content": "",
-            "images": [
-                "the_woods"
+            "media": [
+                {
+                    "media": "the_woods",
+                    "type": "image"
+                }
             ]
         },
         {
@@ -27,8 +36,11 @@
                 "Logo Designing"
             ],
             "content": "",
-            "images": [
-                "daily_healthz"
+            "media": [
+                {
+                    "media": "daily_healthz",
+                    "type": "image"
+                }
             ]
         },
         {
@@ -38,9 +50,15 @@
                 "3D Modelling"
             ],
             "content": "",
-            "images": [
-                "melle_card",
-                "melle_render"
+            "media": [
+                {
+                    "media": "melle_card",
+                    "type": "image"
+                },
+                {
+                    "media": "melle_render",
+                    "type": "image"
+                }
             ]
         },
         {
@@ -49,8 +67,11 @@
                 "Logo Designing"
             ],
             "content": "",
-            "images": [
-                "waneur"
+            "media": [
+                {
+                    "media": "waneur",
+                    "type": "image"
+                }
             ]
         },
         {
@@ -61,10 +82,143 @@
                 "Scene Setup"
             ],
             "content": "",
-            "images": [
-                "shipwreck",
-                "pirate_anim",
-                "pirate_scene"
+            "media": [
+                {
+                    "media": "shipwreck",
+                    "type": "image"
+                },
+                {
+                    "media": "pirate_anim",
+                    "type": "image"
+                },
+                {
+                    "media": "pirate_scene",
+                    "type": "image"
+                }
+            ]
+        },
+        {
+            "title": "Smart Home System",
+            "category": [
+                "App Dev",
+                "IoT"
+            ],
+            "content": "A solution to control electrical appliances through smartphones. The smartphone communicates through sockets over bluetooth to send command to the backend server,(which we host on a Raspberry Pi). The backend server controls the electrical settings based on the instruction received.",
+            "media": []
+        },
+        {
+            "title": "Elfo Sera",
+            "category": [
+                "Web Dev"
+            ],
+            "content": "An online file manager that I created. It mimics an online platform where you can create/manage files and folder.",
+            "media": [
+                {
+                    "media": "elfo_root",
+                    "type": "image"
+                },
+                {
+                    "media": "elfo_use",
+                    "type": "image"
+                }
+            ]
+        },
+        {
+            "title": "Ironov",
+            "category": [
+                "Information Retrieval",
+                "Spell Corrector"
+            ],
+            "content": "An information retrieval system, that retrieves speeches given by American presidents based on the query provided. The system automatically corrects any spelling mistakes in the query, and also includes a feedback mechanism to inprove relevant fetches.",
+            "media": []
+        },
+        {
+            "title": "Drug Drug Interaction Predictor",
+            "category": [
+                "Deep Learning"
+            ],
+            "content": "A model that predicts what interaction will take place when some types of drugs are used in conjunction with one another. The main aim of this project is to predict the side-effects caused due to such interactions. GNN (Graph Neural Networks) were used in the model.",
+            "media": []
+        },
+        {
+            "title": "Agent Pong",
+            "category": [
+                "Reinforcement Learning",
+                "Game Dev"
+            ],
+            "content": "An AI created for pong, in Unity. The agent learns to play the game by playing over simultaneous iterations against itself, and improves itself.",
+            "media": [
+                {
+                    "media": "agent_pong",
+                    "type": "video"
+                }
+            ]
+        },
+        {
+            "title": "IndieFaction",
+            "category": [
+                "Web Dev"
+            ],
+            "content": "A platorm that provides Game developers a way to create collector's edition for their games easily. The platform is built using MERN stack. A user can create a collector edition( composed of images ). A customer can then buy those images in the collector edition, and get it delivered to them as a printed media. Various B2B APIs are also exposed for providing integration with other businesses.",
+            "media": []
+        },
+        {
+            "title": "Pixel Art Character Generator",
+            "category": [
+                "Deep Learning"
+            ],
+            "content": "A Deep Learning model, that generates pixel arts characters, similar to those, present in \"Final Fantasy V\" GBA game. The model uses DCGAN to generate the images.",
+            "media": [
+                {
+                    "media": "pixel_character_1",
+                    "type": "image"
+                },
+                {
+                    "media": "pixel_character_2",
+                    "type": "image"
+                },
+                {
+                    "media": "pixel_character_3",
+                    "type": "image"
+                },
+                {
+                    "media": "pixel_character_4",
+                    "type": "image"
+                },
+                {
+                    "media": "pixel_character_5",
+                    "type": "image"
+                }
+            ]
+        },
+        {
+            "title": "Withcer Cinematograph",
+            "category": [
+                "Cinematography"
+            ],
+            "content": "Added motion to a still Image of The Witcher 3: Wild Hunt.",
+            "media": [
+                {
+                    "media": "witcher_static",
+                    "type": "image"
+                },
+                {
+                    "media": "witcher_video",
+                    "type": "video"
+                }
+            ]
+        },
+        {
+            "title": "Rocket Injector Visualizer",
+            "category": [
+                "Open Source"
+            ],
+            "content": "I created a rocket injector visualizer for an open source organisation \"mlpack\". The visualizer was created on the request of my friend, to be included in his GSoC 21 project.",
+            "media": [
+                {
+                    "media": "rocket_injector",
+                    "type": "video"
+                }
             ]
         }
     ]

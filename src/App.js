@@ -7,6 +7,7 @@ import {
 import ProjectMain from './Project';
 import Home from './Home';
 import ProjectCategory from "./ProjectCategory";
+import AboutMe from "./AboutMe";
 
 import { UseWindowDimensions, GenerateCategories } from './auxilaryFunctions'
 
@@ -24,6 +25,9 @@ function App() {
         <Route path='/project/:category' children={<ProjectCategory isSmall={isSmall} height={height} width={width} />} />
         <Route path='/project'>
           <ProjectMain isSmall={isSmall} height={height} width={width} />
+        </Route>
+        <Route path='/about-me'>
+          <AboutMe isSmall={isSmall} height={height} width={width} />
         </Route>
         <Route path='/'>
           <Home isSmall={isSmall} height={height} width={width} />

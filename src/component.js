@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createRef } from 'react';
 import './mainStyle.css';
 import avatar from './Avy 1(Enlarged).jpeg';
-import bgVideo from './Media/Video/testVideo.mp4';
+import bgVideo from './Media/Video/Background/testVideo.mp4';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -57,7 +57,7 @@ const HeaderBarComponents = (props) => {
             <svg className="headerButton"
                 onMouseEnter={() => { setColor(hoverColor); setWidth(maxWidth) }}
                 onMouseLeave={() => { setColor(defColor); setWidth(0) }}
-                onClick={() => props.pushPath && NavigatorChecker(props.pushPath, location.pathname) && history.push(props.pushPath)}
+                onClick={() => props.pushPath && NavigatorChecker(props.pushPath, location.pathname) && clearTimeout(t) & history.push(props.pushPath)}
                 style={buttonStyle}
                 height={props.height + (props.index) * props.width * Math.tan(props.angle * Math.PI / 180)} width={props.width}>
                 <path
@@ -74,6 +74,7 @@ const HeaderBar = (props) => {
     const titleArray = [
         {
             name: "About Me",
+            pushPath: '/about-me',
         },
         {
             name: "My Projects",
@@ -298,13 +299,28 @@ const AvatarImage = (props) => {
 }
 
 let videoTotalDuration = null;
+// let frameLimit = 0;
+let loaded = false;
+let isScrollControlled = false;
+
+// const setFrameLimit = (newLimit) => {
+//     frameLimit = newLimit;
+// }
+
+const setLoadedState = (loadedState) => {
+    loaded = loadedState;
+}
+
+const setScrollControl = (scrollControlledState) => {
+    isScrollControlled = scrollControlledState;
+}
 
 const VideoBackground = () => {
 
     const [frameLimit, setframeLimit] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
-    const [loaded, setLoadedState] = useState(false);
-    const [isScrollControlled, setScrollControl] = useState(false);
+    // const [loaded, setLoadedState] = useState(false);
+    // const [isScrollControlled, setScrollControl] = useState(false);
     const vid = createRef();
     const frameSkip = 120 / 60;
     const indicatorWidth = 200;
@@ -352,7 +368,7 @@ const VideoBackground = () => {
 
             return () => clearTimeout(timer);
         }
-    }, [loaded, frameLimit, currentTime, vid])
+    }, [frameLimit, currentTime, vid])
 
     return (
         <div>
@@ -416,7 +432,7 @@ const WaveSVG = (props) => {
                 fontFamily: 'League Spartan',
                 color: '#E9E9E9',
                 fontSize: '2em'
-            }}>Projects</div>
+            }}>{props.title}</div>
         </div>
     );
 
@@ -437,7 +453,7 @@ const WaveSVGSml = (props) => {
                 color: '#E9E9E9',
                 fontSize: '2em',
                 borderBottom: '10px solid ' + props.color2,
-            }}>Projects</div>
+            }}>{props.title}</div>
     );
 }
 
@@ -473,7 +489,16 @@ const ProjectImageBlock = (props) => {
         arrows: false,
         adaptiveHeight: false,
     };
-    const imageUnits = props.projectImage.map((image, i) => <img className='projectImage' src={image} key={i} ></img>);
+    const imageUnits = props.projectImage.map((mediaBlock, i) => {
+        if (mediaBlock['type'] === 'video') {
+            return (
+                <video key={i} className='projectVideo' muted autoPlay loop>
+                    <source src={mediaBlock['media']} type='video/mp4' />
+                </video>);
+        }
+        else
+            return <img className='projectImage' src={mediaBlock['media']} key={i} alt={'image'.concat(i.toString())} ></img>
+    });
     return (
         <Slider {...settings}>
             {imageUnits}
@@ -543,11 +568,36 @@ const MessageBox = ({ game, formatData, showState }) => {
     return (
         <div style={{
             position: 'absolute',
-            top: '0px',
-            transform: `translate(0, ${showState ? -70 : -20}%)`,
+            top: '10px',
+            transform: `translateY(${showState ? -100 : 0}%)`,
             opacity: showState ? 1 : 0,
             transitionDuration: showState ? '0.4s' : '0.15s',
         }} className="avatarMessageDecorator">{prefix}<span className="avatarMessageMain">{game}</span>{suffix}</div>
+    );
+}
+
+const AboutPassage = () => {
+    return (
+        <div style={{
+            textAlign: 'justify',
+            fontFamily: 'Montserrat',
+            padding: '30px 50px'
+        }} className='aboutPassageHolder'>
+            <p >So, Ummm, about me, well I am a person who enjoys playing games and programming. Gaming was the catalyst for me getting interested in programming. While I pursued these interests, I learnt about other amazing things, like
+                <span style={{ fontWeight: '600', color: '#2e2e2e' }}> Web & App Development, Game Developement, Artificial Intelligence, Reinforcement Learning & Deep Learning </span>. I also found an interest in <span style={{ fontWeight: '800', color: '#b1305b' }}>Digital Art, Vector Art & 3D Modelling</span>.
+                <br /><br />
+                In my free time, I sometimes write poetry in Hindi & Urdu. I also engage myself in drawing something. Another thing that I usually do is build some contraptions in Minecraft.</p>
+            <br />
+            <br />
+            <br />
+            <p className='boldClass'>Some secret features in the website:</p>
+            <span style={{
+                fontSize: '0.9em',
+            }}>
+                <li style={{ margin: '10px' }}>If you have a device with a scroll wheel(mouse wheel), you can use it to control the video in the Home Page.</li>
+                <li style={{ margin: '10px' }}>Click on my character avatar on the Home page to get a game suggestion.</li>
+            </span>
+        </div >
     );
 }
 
@@ -564,4 +614,5 @@ export {
     WaveSVGSml,
     CategoryButton,
     ProjectUnit,
+    AboutPassage,
 }
