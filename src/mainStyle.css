@@ -6,6 +6,42 @@ body {
     background-color: #dddddd;
 }
 
+.linkParent {
+    text-decoration: none;
+}
+
+.linkContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.linkContent:hover {
+    opacity: 0.6;
+}
+
+.linkText {
+    white-space: pre-wrap;
+    color: azure;
+}
+
+.contactContent {
+    border-bottom: 2px solid rgb(121, 121, 121);
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px 10px;
+}
+
+.contactContentNoBorder {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px 10px;
+}
+
+.mailSeperator {
+    border: 2px solid rgb(121, 121, 121);
+}
+
 .homeMain {
     position: absolute;
     top: 0;

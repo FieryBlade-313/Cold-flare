@@ -23,8 +23,13 @@ import PixelArtCharacter4 from './Media/Images/Pixel Art Generator/ex4.png';
 import PixelArtCharacter5 from './Media/Images/Pixel Art Generator/ex5.png';
 import WitcherStatic from './Media/Images/Witcher 3/orig_wallpaper.png';
 import WitcherVideo from './Media/Video/Witcher 3/video.mp4';
-import RocketInjector from './Media/Video/Rocket Injector Visulizer/video.mp4'
-import AgentPong from './Media/Video/Agent Pong/video.mp4'
+import RocketInjector from './Media/Video/Rocket Injector Visulizer/video.mp4';
+import AgentPong from './Media/Video/Agent Pong/video.mp4';
+import Pirate from './Media/Images/World of Ocean/render.png';
+import Ship from './Media/Images/World of Ocean/ship_render.png';
+import Vector1 from './Media/Images/Vector Art/type1.png';
+import Vector2 from './Media/Images/Vector Art/type2.png';
+import Vector3 from './Media/Images/Vector Art/type3.png';
 
 const categorySet = new Set();
 
@@ -58,6 +63,11 @@ const ImageMap = {
     'witcher_video': WitcherVideo,
     'rocket_injector': RocketInjector,
     'agent_pong': AgentPong,
+    'pirate': Pirate,
+    'ship_pirate': Ship,
+    'vector1': Vector1,
+    'vector2': Vector2,
+    'vector3': Vector3,
 }
 
 const GetImageComponent = (image_key) => {
@@ -107,7 +117,7 @@ function UseWindowDimensions() {
 }
 
 function GetCategories() {
-    return [...categorySet];
+    return [...categorySet].sort();
 }
 
 function GetProjects(dataFilter) {

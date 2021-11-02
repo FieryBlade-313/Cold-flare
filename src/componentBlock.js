@@ -101,11 +101,11 @@ const BgVideoBlock = () => {
     );
 }
 
-const ButtonBlock = () => {
+const ButtonBlock = ({ modalOpenState }) => {
     return (
         <div className='buttonHolder'>
             <ResumeButton />
-            <ContactButton />
+            <ContactButton modalOpenState={modalOpenState} />
         </div>
     );
 }

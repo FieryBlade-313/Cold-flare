@@ -1,0 +1,49 @@
+.backgroundModal {
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px) grayscale(40%);
+}
+.modal {
+    color: azure;
+    display: flex;
+    border: 2px solid #bdbdbd;
+    padding: 10px 20px;
+    min-height: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1E1E1E;
+    min-width: 310px;
+    border-radius: 5px;
+    box-shadow: 0 0 200px rgb(0, 0, 0);
+    z-index: 2;
+}
+
+.submit {
+    color: white;
+    background-color: #3b8abe;
+    padding: 8px 12px;
+    margin: 10px;
+    display: block;
+    font-family: Consolas;
+    border: 0px;
+}
+
+.submit:active {
+    background-color: #154363;
+}
+
+@media screen and (max-width: 360px) {
+    .modal {
+        padding: 10px 0px;
+        width: 100vw;
+        border-radius: 0;
+        border: 0;
+    }
+}

@@ -78,8 +78,7 @@
             "title": "Pirate Scene",
             "category": [
                 "Pixel Art",
-                "Frame Animation",
-                "Scene Setup"
+                "2D Animation"
             ],
             "content": "",
             "media": [
@@ -113,10 +112,6 @@
             ],
             "content": "An online file manager that I created. It mimics an online platform where you can create/manage files and folder.",
             "media": [
-                {
-                    "media": "elfo_root",
-                    "type": "image"
-                },
                 {
                     "media": "elfo_use",
                     "type": "image"
@@ -192,7 +187,7 @@
             ]
         },
         {
-            "title": "Withcer Cinematograph",
+            "title": "Witcher Cinematograph",
             "category": [
                 "Cinematography"
             ],
@@ -218,6 +213,47 @@
                 {
                     "media": "rocket_injector",
                     "type": "video"
+                }
+            ]
+        },
+        {
+            "title": "An Enigma of Seas",
+            "category": [
+                "Game Dev",
+                "Behaviour Tree",
+                "3D Modelling",
+                "Work in Progress"
+            ],
+            "content": "A game set in the era of Pirates. The players controls the ship through real world motion, i.e, through moving around in real life. The smaprphone's sensors are used to achieve this. It is currently being developed as part of my BTP.",
+            "media": [
+                {
+                    "media": "pirate",
+                    "type": "image"
+                },
+                {
+                    "media": "ship_pirate",
+                    "type": "image"
+                }
+            ]
+        },
+        {
+            "title": "Glasses with Classes",
+            "category": [
+                "Vector Art"
+            ],
+            "content": "",
+            "media": [
+                {
+                    "media": "vector1",
+                    "type": "image"
+                },
+                {
+                    "media": "vector2",
+                    "type": "image"
+                },
+                {
+                    "media": "vector3",
+                    "type": "image"
                 }
             ]
         }

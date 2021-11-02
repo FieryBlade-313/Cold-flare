@@ -7,6 +7,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useHistory, useLocation } from "react-router-dom";
 import { GetRandomGameMessage } from './auxilaryFunctions';
+import Modal from './Modal';
+
+import GithubLogo from './Media/Images/Social Icons/github.png';
+import LinkedinLogo from './Media/Images/Social Icons/linkedin.png';
 
 
 const NavigatorChecker = (path, curr) => {
@@ -340,12 +344,12 @@ const VideoBackground = () => {
         }
     }
 
-    const GetIndicatorLength = () => {
-        let resLength = 0;
-        if (videoTotalDuration)
-            resLength = indicatorWidth - (videoTotalDuration - currentTime) * indicatorWidth / videoTotalDuration;
-        return resLength;
-    }
+    // const GetIndicatorLength = () => {
+    //     let resLength = 0;
+    //     if (videoTotalDuration)
+    //         resLength = indicatorWidth - (videoTotalDuration - currentTime) * indicatorWidth / videoTotalDuration;
+    //     return resLength;
+    // }
 
     useEffect(() => {
         if (loaded) {
@@ -388,9 +392,48 @@ const VideoBackground = () => {
     );
 }
 
-const ContactButton = () => {
+const ContactModal = ({ modalOpenState }) => {
+
+    const modalContent = <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    }}>
+        <div className="contactContent">
+            <a className='linkParent' href="https://github.com/FieryBlade-313">
+                <div className="linkContent">
+                    <img src={GithubLogo} height={'16px'} alt="Github" /><div className='linkText'>{" / FieryBlade"}</div>
+                </div>
+            </a>
+        </div>
+        <div className="contactContent">
+            <a className='linkParent' href="https://www.linkedin.com/in/mohd-fauz">
+                <div className="linkContent">
+                    <img src={LinkedinLogo} height={'16px'} alt="Linkedin" /><div className='linkText'>{" / mohd-fauz"}</div>
+                </div>
+            </a>
+        </div>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+        }} className="contactContent">fauz212126@gmail.com
+        </div>
+        <div className='contactContentNoBorder'>mohdfauz.s18@iiits.in</div>
+    </div>
+
     return (
-        <div className='buttonDim contact' >Contact</div>
+        <Modal modalOpenState={modalOpenState} modalContent={modalContent} />
+    )
+}
+
+const ContactButton = ({ modalOpenState }) => {
+
+    return (
+        <div className='buttonDim contact' onClick={() => modalOpenState(true)}>Contact</div>
     );
 }
 
@@ -520,7 +563,8 @@ const ProjectUnit = (props) => {
                 fontFamily: `'League Spartan', sans-serif`,
                 fontSize: '2em',
                 fontWeight: 'bold',
-                margin: '15px 0 15px 50px',
+                wordWrap: 'break-word',
+                margin: '15px 50px 15px 50px',
             }}>{props.projectTitle}</span>
             <span style={{
                 display: 'flex',
@@ -615,4 +659,5 @@ export {
     CategoryButton,
     ProjectUnit,
     AboutPassage,
+    ContactModal,
 }
