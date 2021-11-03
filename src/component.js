@@ -631,8 +631,8 @@ const AboutPassage = () => {
             fontFamily: 'Montserrat',
             padding: '30px 50px'
         }} className='aboutPassageHolder'>
-            <p >So, Ummm, about me, well I am a person who enjoys playing games and programming. Gaming was the catalyst for me getting interested in programming. While I pursued these interests, I learnt about other amazing things, like
-                <span style={{ fontWeight: '600', color: '#2e2e2e' }}> Web & App Development, Game Developement, Artificial Intelligence, Reinforcement Learning & Deep Learning </span>. I also found an interest in <span style={{ fontWeight: '800', color: '#b1305b' }}>Digital Art, Vector Art & 3D Modelling</span>.
+            <p >So, Ummm, about me, well I am a person who enjoys playing games and programming. Gaming was the catalyst for me getting interested in programming. While I pursued these interests, I learned about other amazing things, like
+                <span style={{ fontWeight: '600', color: '#2e2e2e' }}> Web & App Development, Artificial Intelligence, Reinforcement Learning & Deep Learning </span>. I also found an interest in <span style={{ fontWeight: '800', color: '#b1305b' }}>Digital Art, Vector Art & 3D Modelling</span>.
                 <br /><br />
                 In my free time, I sometimes write poetry in Hindi & Urdu. I also engage myself in drawing something. Another thing that I usually do is build some contraptions in Minecraft.</p>
             <br />

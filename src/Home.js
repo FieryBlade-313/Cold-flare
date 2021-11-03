@@ -1,4 +1,4 @@
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import {
     HeaderBarBlock,
     TextContentBlock,
@@ -12,15 +12,15 @@ import {
 } from './component';
 
 const Home = ({ isSmall, width, height }) => {
-    
+
     const [isOpen, modalOpenState] = useState(false);
-    
+
     return (
         <div className="homeMain">
             <HeaderBarBlock isSmall={isSmall} width={width} height={height} />
             <TextContentBlock isSmall={isSmall} width={width} height={height} />
             <TextAndImageBlock isSmall={isSmall} width={width} height={height} />
-            <ButtonBlock modalOpenState={modalOpenState}/>
+            <ButtonBlock modalOpenState={modalOpenState} />
             <BgVideoBlock />
             {isOpen && <ContactModal modalOpenState={modalOpenState} />}
         </div>
