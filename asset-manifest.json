@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Cold-flare/static/css/main.944b7e3b.chunk.css",
-    "main.js": "/Cold-flare/static/js/main.d7a20a58.chunk.js",
-    "main.js.map": "/Cold-flare/static/js/main.d7a20a58.chunk.js.map",
+    "main.js": "/Cold-flare/static/js/main.972ea3fe.chunk.js",
+    "main.js.map": "/Cold-flare/static/js/main.972ea3fe.chunk.js.map",
     "runtime-main.js": "/Cold-flare/static/js/runtime-main.f2a32298.js",
     "runtime-main.js.map": "/Cold-flare/static/js/runtime-main.f2a32298.js.map",
     "static/css/2.adeef0f5.chunk.css": "/Cold-flare/static/css/2.adeef0f5.chunk.css",
@@ -49,6 +49,6 @@
     "static/css/2.adeef0f5.chunk.css",
     "static/js/2.12b5b650.chunk.js",
     "static/css/main.944b7e3b.chunk.css",
-    "static/js/main.d7a20a58.chunk.js"
+    "static/js/main.972ea3fe.chunk.js"
   ]
 }
