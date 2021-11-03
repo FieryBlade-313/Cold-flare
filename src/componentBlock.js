@@ -23,7 +23,7 @@ const TextAndImageBlock = (props) => {
             display: 'flex',
             justifyContent: 'flex-start',
             position: 'absolute',
-            top: (props.height > 500 ? (props.height - 400) : 275) + "px",
+            top: (props.height > 550 ? (props.height - 400) : 290) + "px",
             right: '0',
             margin: '0 25px',
         }}>
