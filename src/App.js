@@ -20,16 +20,16 @@ function App() {
   GenerateCategories();
 
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Switch>
-        <Route path='/project/:category' children={<ProjectCategory isSmall={isSmall} height={height} width={width} />} />
-        <Route path='/project'>
+        <Route path='/Cold-flare/project/:category' children={<ProjectCategory isSmall={isSmall} height={height} width={width} />} />
+        <Route path='/Cold-flare/project'>
           <ProjectMain isSmall={isSmall} height={height} width={width} />
         </Route>
-        <Route path='/about-me'>
+        <Route path='/Cold-flare/about-me'>
           <AboutMe isSmall={isSmall} height={height} width={width} />
         </Route>
-        <Route path='/'>
+        <Route path='/Cold-flare' exact>
           <Home isSmall={isSmall} height={height} width={width} />
         </Route>
       </Switch>

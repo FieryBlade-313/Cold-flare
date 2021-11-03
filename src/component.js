@@ -80,15 +80,15 @@ const HeaderBar = (props) => {
     const titleArray = [
         {
             name: "About Me",
-            pushPath: '/about-me',
+            pushPath: '/Cold-flare/about-me',
         },
         {
             name: "My Projects",
-            pushPath: '/project',
+            pushPath: '/Cold-flare/project',
         },
         {
             name: "Home",
-            pushPath: '/',
+            pushPath: '/Cold-flare',
         }
     ];
     return (
@@ -509,7 +509,7 @@ const CategoryButton = ({ categoryName }) => {
     let history = useHistory();
     let location = useLocation();
 
-    const pushPath = `/project/${categoryName}`;
+    const pushPath = `/Cold-flare/project/${categoryName}`;
 
     return (
         <span
