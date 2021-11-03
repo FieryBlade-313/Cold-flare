@@ -12,6 +12,8 @@ import Modal from './Modal';
 import GithubLogo from './Media/Images/Social Icons/github.png';
 import LinkedinLogo from './Media/Images/Social Icons/linkedin.png';
 
+import Resume from './Media/Resume/resume.pdf';
+
 
 const NavigatorChecker = (path, curr) => {
     return path !== curr;
@@ -439,7 +441,9 @@ const ContactButton = ({ modalOpenState }) => {
 
 const ResumeButton = () => {
     return (
-        <div className='buttonDim resume' >Resume</div>
+        <a href={Resume} target="_blank" className="linkParent">
+            <div className='buttonDim resume' >Resume</div>
+        </a>
     );
 }
 

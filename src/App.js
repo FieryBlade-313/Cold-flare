@@ -20,7 +20,7 @@ function App() {
   GenerateCategories();
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path='/project/:category' children={<ProjectCategory isSmall={isSmall} height={height} width={width} />} />
         <Route path='/project'>
