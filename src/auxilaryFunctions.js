@@ -30,6 +30,7 @@ import Ship from './Media/Images/World of Ocean/ship_render.png';
 import Vector1 from './Media/Images/Vector Art/type1.png';
 import Vector2 from './Media/Images/Vector Art/type2.png';
 import Vector3 from './Media/Images/Vector Art/type3.png';
+import SmartHome from './Media/Video/Smart Home/video.mp4';
 
 const categorySet = new Set();
 
@@ -68,6 +69,7 @@ const ImageMap = {
     'vector1': Vector1,
     'vector2': Vector2,
     'vector3': Vector3,
+    'smart_home': SmartHome,
 }
 
 const GetImageComponent = (image_key) => {

@@ -103,7 +103,12 @@
                 "IoT"
             ],
             "content": "A solution to control electrical appliances through smartphones. The smartphone communicates through sockets over bluetooth to send command to the backend server,(which we host on a Raspberry Pi). The backend server controls the electrical settings based on the instruction received.",
-            "media": []
+            "media": [
+                {
+                    "media": "smart_home",
+                    "type": "video"
+                }
+            ]
         },
         {
             "title": "Elfo Sera",
