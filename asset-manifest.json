@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Cold-flare/static/css/main.944b7e3b.chunk.css",
-    "main.js": "/Cold-flare/static/js/main.47bdaf6e.chunk.js",
-    "main.js.map": "/Cold-flare/static/js/main.47bdaf6e.chunk.js.map",
+    "main.js": "/Cold-flare/static/js/main.61dbfcf9.chunk.js",
+    "main.js.map": "/Cold-flare/static/js/main.61dbfcf9.chunk.js.map",
     "runtime-main.js": "/Cold-flare/static/js/runtime-main.7ad38d0e.js",
     "runtime-main.js.map": "/Cold-flare/static/js/runtime-main.7ad38d0e.js.map",
     "static/css/2.adeef0f5.chunk.css": "/Cold-flare/static/css/2.adeef0f5.chunk.css",
@@ -42,6 +42,7 @@
     "static/media/video.65dbda17.mp4": "/Cold-flare/static/media/video.65dbda17.mp4",
     "static/media/video.6fad9052.mp4": "/Cold-flare/static/media/video.6fad9052.mp4",
     "static/media/video.c348ce91.mp4": "/Cold-flare/static/media/video.c348ce91.mp4",
+    "static/media/video.c6315e8f.mp4": "/Cold-flare/static/media/video.c6315e8f.mp4",
     "static/media/waneur_logo.14db0aa7.png": "/Cold-flare/static/media/waneur_logo.14db0aa7.png"
   },
   "entrypoints": [
@@ -49,6 +50,6 @@
     "static/css/2.adeef0f5.chunk.css",
     "static/js/2.a9fea85b.chunk.js",
     "static/css/main.944b7e3b.chunk.css",
-    "static/js/main.47bdaf6e.chunk.js"
+    "static/js/main.61dbfcf9.chunk.js"
   ]
 }
